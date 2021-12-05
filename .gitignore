@@ -1,5 +1,8 @@
 console_game.iml
 .idea/
+src/Hero.class
+src/Main.class
+src/Wizard.class
 # Compiled class file
 *.class
 
