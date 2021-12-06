@@ -2,13 +2,18 @@ public class Hero {
 
     protected String name;
     protected String heroClass;
-    protected double healthPoint;
-    protected double damage;
+    protected double initialHealthPoint;
+    protected double actualHealthPoint;
+    protected double initialDamage;
+    protected double actualDamage;
+
+    //изменить метод getHealthPoint, и создать переменную для стартового хп, чтобы сравнивать действительное и стартовое
 
     public Hero(String name, double healthPoint, double damage) {
         this.name = name;
-        this.healthPoint = healthPoint;
-        this.damage = damage;
+        this.initialHealthPoint = healthPoint;
+        this.actualHealthPoint = healthPoint;
+        this.actualDamage = damage;
     }
 
     public Hero() {
@@ -26,38 +31,57 @@ public class Hero {
         return this.heroClass;
     }
 
-    public double getHealthPoint() {
-        return this.healthPoint;
+    public double getActualHealthPoint() {
+        return this.actualHealthPoint;
     }
 
-    public void setHealthPoint(double healthPoint) {
-        this.healthPoint = healthPoint;
+    public void setActualHealthPoint(double healthPoint) {
+        this.actualHealthPoint = healthPoint;
     }
 
-    public double getDamage() {
-        return this.damage;
+    public double getInitialHealthPoint() {
+        return this.initialHealthPoint;
     }
 
-    public void setDamage(double damage) {
-        this.damage = damage;
+    public double getActualDamage() {
+        return this.actualDamage;
+    }
+
+    public void setActualDamage(double damage) {
+        this.actualDamage = damage;
+    }
+
+    public double getInitialDamage() {
+        return this.initialDamage;
     }
 
     public void decreaseHealthPoint(double healthPoint) {
-        this.healthPoint -= healthPoint;
+        this.actualHealthPoint -= healthPoint;
+    }
+
+    public boolean isAlive() {
+        if (this.getActualHealthPoint() > 0.0d) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void attack(Hero player) {
         if (this.name.equals(player.getName())) {
             System.out.println(this.getName() + " tried to hit himself");
         } else {
-            player.decreaseHealthPoint(getDamage());
+            System.out.println(this.getName() + "(HP:" + this.getActualHealthPoint() + ")"
+                    + " hit " + player.getName() + "(HP:" + player.getActualHealthPoint() + ") -" + this.getActualDamage());
+            player.decreaseHealthPoint(getActualDamage());
+
         }
     }
 
     public String getInfo() {
         return "Name: " + this.getName()
                 + "\nClass: " + this.getHeroClass()
-                + "\nHP: " + this.getHealthPoint()
-                + "\nDamage: " + this.getDamage() + "\n\n";
+                + "\nHP: " + this.getActualHealthPoint()
+                + "\nDamage: " + this.getActualDamage() + "\n\n";
     }
 }

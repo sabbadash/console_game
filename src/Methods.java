@@ -2,10 +2,11 @@ public class Methods {
 
     public static void clear() {
         try {
-            if (System.getProperty("os.name").contains("Windows"))
+            if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            else
+            } else {
                 Runtime.getRuntime().exec("clear");
+            }
         } catch (java.io.IOException | InterruptedException ex) {
         }
     }
