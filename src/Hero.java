@@ -1,3 +1,4 @@
+
 public class Hero {
 
     protected String name;
@@ -65,14 +66,17 @@ public class Hero {
             return false;
         }
     }
-
+// написать логику остановки боя если ХП меньше атаки нападающего
     public void attack(Hero player) {
+
+
         if (this.getHeroClass().equals("Wizard")) {
             int randNum = (int) Math.round(Math.random() * 3);   //0, 1, 2
             if (randNum == 2) {
                 this.setActualDamage(this.getActualDamage() + 3);
             }
         }
+
 
         if (this.name.equals(player.getName())) {
             System.out.println(this.getName() + " tried to hit himself");
@@ -82,7 +86,7 @@ public class Hero {
             if (this.getActualDamage() == this.getInitialDamage() && this.getHeroClass().equals("Wizard")) {
                 System.out.println();
             } else {
-                System.out.println(Methods.makeRed("\t!!MAGIC IMPACT!!"));
+                System.out.println("\t!!MAGIC IMPACT!!");
             }
             player.decreaseHealthPoint(this.getActualDamage());
             this.setActualDamage(this.getInitialDamage());
